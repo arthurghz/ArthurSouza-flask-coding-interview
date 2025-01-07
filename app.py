@@ -1,12 +1,11 @@
 from flask_openapi3 import OpenAPI
 
-from api.users.routes import users_app
+from api.users.routes import users_app, students_app, courses_app
 from database import db
 
 
 def register_routes(app):
     pass
-
 
 def create_app():
     app = OpenAPI(__name__)
@@ -15,6 +14,8 @@ def create_app():
     ] = "postgresql://test:test@localhost:5432/flask_interview"
     db.init_app(app)
     app.register_api(users_app)
+    app.register_api(courses_app)
+    app.register_api(students_app)
     return app
 
 
